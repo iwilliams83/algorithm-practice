@@ -3,62 +3,51 @@
 class TempTracker {
   constructor(){
     this.temps = []
+    this.max = 0
+    this.min = 110
+    this.total = 0
+    this.counts = {}
+    this.mode = 0
   }
 
   insert(temperature) {
     this.temps.push(temperature)
+    this.max = Math.max(temperature, this.max)
+    this.min = Math.min(temperature, this.min)
+    this.total += temperature
+
+    if(!this.counts[temperature]){
+      this.counts[temperature] = 1
+    }
+    else {
+      this.counts[temperature] += 1
+    }
+
+    let mostFrequent = 0
+
+    Object.keys(this.counts).forEach(item => {
+      if(this.counts[item] > mostFrequent){
+        mostFrequent = this.counts[item]
+        this.mode = item
+      }
+    })
+
   }
 
   getMax() {
-    let max = 0
-    this.temps.forEach(item => {
-      if(item > max){
-        max = item
-      }
-    })
-    return max;
+    return this.max;
   }
 
   getMin() {
-    let min = 110
-    this.temps.forEach(item => {
-      if(item < min){
-        min = item
-      }
-    })
-    return min;
+    return this.min;
   }
 
   getMean() {
-   let sum = this.temps.reduce((total, item) => {
-      return total += item
-    }, 0)
-
-    return sum/this.temps.length
+    return this.total/this.temps.length
   }
 
   getMode() {
-    let counts = {}
-    this.temps.forEach(item => {
-      if(!counts[item]){
-        counts[item] = 1
-      }
-      else {
-        counts[item] += 1
-      }
-    })
-
-    let mode
-    let mostFrequent = 0
-
-    Object.keys(counts).forEach(item => {
-      if(counts[item] > mostFrequent){
-        mostFrequent = counts[item]
-        mode = item
-      }
-    })
-
-    return +mode
+    return +this.mode // '+' is the same as parseInt
   }
 }
 
