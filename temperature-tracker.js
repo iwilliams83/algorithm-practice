@@ -7,7 +7,8 @@ class TempTracker {
     this.min = 110
     this.total = 0
     this.counts = {}
-    this.mode = 0
+    this.mode = 0 //temp that appears most frequently
+    this.mostFrequent = 0 //number of times "mode" appears
   }
 
   insert(temperature) {
@@ -23,14 +24,10 @@ class TempTracker {
       this.counts[temperature] += 1
     }
 
-    let mostFrequent = 0
-
-    Object.keys(this.counts).forEach(item => {
-      if(this.counts[item] > mostFrequent){
-        mostFrequent = this.counts[item]
-        this.mode = item
-      }
-    })
+   if(this.counts[temperature] > this.mostFrequent){
+     this.mode = temperature
+     this.mostFrequent = this.counts[temperature]
+   }
 
   }
 
