@@ -29,7 +29,6 @@ function overlap(rec1, rec2){
 
   //if you've made it this far (did not return early with false, there must be an overlap)
   return true
-
 }
 
 // Given x and y are top left corner of rectangle

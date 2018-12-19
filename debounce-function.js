@@ -1,19 +1,20 @@
+
 function debounce(cb, wait){
-  //wait is the time to wait before executing the cb
-  //need to keep track of time between function calls
-  let timeNow;
-  let lastTime;
+  //"wait" is the time to wait before executing the cb
+  //cb is the search function to be executed
 
-  //need an ID for the setTimeout (to clear it later on)
-  let id;
+  //Keep track of time between function calls
+  let timeNow
+  let lastTime
+  //Need ID for the setTimeout (to clear it later on)
+  let id
 
-  //every time the function is called, it should reset the time if its called again
+  //Each time debounce is called, it should reset the time if its called again
   //within the "wait" window
-
   return function(){
     timeNow = Date.now()
       //if its not called again within wait window, then execute cb()
-    if (lastTime && (timeNow - lastTime < wait)){
+    if (lastTime && ((timeNow - lastTime) < wait)){
       clearTimeout(id)
     }
 
