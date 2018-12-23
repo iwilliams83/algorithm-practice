@@ -2,9 +2,7 @@
 Write a function that returns true or false as to whether or not a given
 array matches a given string pattern
 
-function samePattern(arr, str){
-
-}
+function samePattern(arr, str){}
 
 samePattern(["to be", "or not", "to be"], "aba")
   => should return true
