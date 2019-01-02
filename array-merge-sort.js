@@ -5,7 +5,6 @@ function mergeSort(array) {
   let min = Math.min(array[0], array[1])
   let nums = {}
 
-
   for(let i = 0; i < array.length; i++){
     let current = array[i]
 
