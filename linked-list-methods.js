@@ -37,12 +37,26 @@ class LinkedList {
 
   insertAtIndex(node, index){
     let i = 0
-    let previous = this.head 
+    let previous = this.head
     while(i < index){
       temp = previous.next
       previous.next = node
       node.next = temp
       i++
     }
+  }
+
+  findIndices(value){
+    let current = this.head
+    let i = 0
+    let indices = []
+    while(i < this.size){
+      if(current.element === value){
+        indices.push(i)
+      }
+      current = current.next
+      i++
+    }
+    return indices
   }
 }
